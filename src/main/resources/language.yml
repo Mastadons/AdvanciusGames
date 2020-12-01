@@ -1,0 +1,34 @@
+info: "&eAdvanciusGames by Mastadons =)"
+reload: "&eAdvanciusGames has been reloaded"
+country:
+  questionSummoned: "&eChat game started! Unscramble &a{question.getScrambledCapital}&e, the capital of &a{question.country}&e."
+  questionFinished: "&cChat game ended, the capital of {question.country} is {question.capital}."
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! The capital of &a{question.country}&e is &a{question.capital}&e."
+equation:
+  questionSummoned: "&eChat game started! Solve the equation: &a{question.expression}"
+  questionFinished: "&cChat game ended, {question.expression} = {question.answer.toPlainString}"
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! &a{question.expression} = {question.answer.toPlainString}"
+hangman:
+  questionSummoned: "&eChat game started! Guess letters to complete the word: &a{question.blankString}&e."
+  questionFinished: "&cChat game ended, the word was {question.phrase}."
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! The word was &a{question.phrase}&e."
+number:
+  questionSummoned: "&eChat game started! Guess the correct number from &a{question.minimumNumber}&e to &a{question.maximumNumber}&e."
+  questionFinished: "&cChat game ended, the number was {question.number}."
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! The number was &a{question.number}&e."
+quicktype:
+  questionSummoned: "&eChat game started! Type as fast as you can: &a{question.getSentence}&e."
+  questionFinished: "&cChat game ended, no one could type the words correctly."
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e typed the fastest!"
+scramble:
+  questionSummoned: "&eChat game started! Unscramble the word: &a{question.getScrambledSentence}&e."
+  questionFinished: "&cChat game ended, the word was {question.getSentence}."
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! The word was &a{question.getSentence}&e."
+trivia:
+  questionSummoned: "&eChat game started! &a{question.question}"
+  questionFinished: "&cChat game ended, the answer was {question.getAnswer}."
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! The answer was &a{question.getAnswer}&e."
+variable:
+  questionSummoned: "&eChat game started! Solve for n in the equation: &a{question.expression}&e = &a{question.expressionAnswer.toPlainString}"
+  questionFinished: "&cChat game ended, n = {question.variableAnswer}"
+  questionRightAnswer: "&a{person.bungeecord.proxiedPlayer.getName}&e guessed the correct answer! n = &a{question.variableAnswer}"

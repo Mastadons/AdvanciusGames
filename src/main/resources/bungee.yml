@@ -1,0 +1,6 @@
+name: AdvanciusGames
+main: net.advancius.AdvanciusGames
+version: 1.0
+description: Chat game extension for AdvanciusChat
+author: Mastadons
+depends: [AdvanciusBungee]

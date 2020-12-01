@@ -1,0 +1,34 @@
+bungeeRewardCommand: ""
+spigotRewardCommand: "rpadd 800 {person.bungeecord.proxiedPlayer.getName}"
+commandDescription:
+  name: chatgames
+  permission: advancius.chatgames
+  description: ""
+  aliases: ["acg", "cg"]
+minimumPlayers: 1
+maximumPlayers: 16
+firstSummonDelay: 30
+duration: 120
+cooldown: 60
+equation:
+  defaultLevel: 4
+  maximumGenerations: 100
+  numberRange: 20
+  maximumSolution: 200
+  divisionLimit: 10
+number:
+  defaultMinimum: 0
+  defaultMaximum: 20
+quicktype:
+  defaultLevel: 5
+scramble:
+  defaultLevel: 1
+variable:
+  defaultLevel: 3
+  maximumGenerations: 100
+  numberRange: 20
+  maximumSolution: 200
+  divisionLimit: 10
+  variableCharacter: n
+  defaultMinimum: -10
+  defaultMaximum: 10
