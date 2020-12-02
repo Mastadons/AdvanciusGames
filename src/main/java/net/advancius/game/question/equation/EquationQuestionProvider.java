@@ -27,7 +27,7 @@ public class EquationQuestionProvider implements QuestionProvider<EquationQuesti
     }
 
     @Override
-    public EquationQuestion generateQuestion(CommandFlagss arguments) {
+    public EquationQuestion generateQuestion(CommandFlags arguments) {
         int level = getQuestionLevel(arguments);
 
         for (int attempts=0; attempts < configuration.maximumGenerations; attempts++) {
