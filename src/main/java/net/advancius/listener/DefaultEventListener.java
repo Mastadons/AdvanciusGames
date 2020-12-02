@@ -40,10 +40,12 @@ public class DefaultEventListener implements EventListener {
         if (gameManager.getQuestion() == null) return;
 
         SummonedQuestion summonedQuestion = gameManager.getQuestion();
+        if (summonedQuestion.isAnswered()) return;
 
         boolean correctAnswer = summonedQuestion.getQuestion().isAnswer(event.getMessage());
         ChatgameContext.incrementScore(event.getSender(), summonedQuestion.getQuestionProvider(), correctAnswer);
         if (correctAnswer) {
+            summonedQuestion.setAnswered(true);
             summonedQuestion.getQuestionProvider().onQuestionRightAnswer(event.getSender(), summonedQuestion.getQuestion());
             gameManager.sendRewards(event.getSender());
             gameManager.setQuestion(null);

@@ -7,4 +7,6 @@ public class SummonedQuestion {
 
     private final Question question;
     private final QuestionProvider questionProvider;
+
+    private boolean answered;
 }
