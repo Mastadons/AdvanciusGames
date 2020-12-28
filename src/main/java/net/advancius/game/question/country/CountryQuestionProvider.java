@@ -61,7 +61,7 @@ public class CountryQuestionProvider implements QuestionProvider<CountryQuestion
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().country.questionSummoned);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class CountryQuestionProvider implements QuestionProvider<CountryQuestion
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().country.questionFinished);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -78,12 +78,20 @@ public class CountryQuestionProvider implements QuestionProvider<CountryQuestion
         placeholderComponent.replace("question", question);
         placeholderComponent.replace("person", person);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
         return false;
     }
 
     @Override
     public boolean onQuestionWrongAnswer(Person person, CountryQuestion question, String answer) {
         return false;
+    }
+
+    @Override
+    public void onRequestAnswer(Person person, CountryQuestion question) {
+        PlaceholderComponent component = new PlaceholderComponent(GameLanguage.getInstance().country.answer);
+        component.replace("question", question);
+        component.translateColor();
+        component.send(person);
     }
 }

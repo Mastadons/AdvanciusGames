@@ -35,7 +35,7 @@ public class HangmanQuestionProvider implements QuestionProvider<HangmanQuestion
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().hangman.questionSummoned);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -43,7 +43,15 @@ public class HangmanQuestionProvider implements QuestionProvider<HangmanQuestion
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().hangman.questionFinished);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
+    }
+
+    @Override
+    public void onRequestAnswer(Person person, HangmanQuestion question) {
+        PlaceholderComponent component = new PlaceholderComponent(GameLanguage.getInstance().hangman.answer);
+        component.replace("question", question);
+        component.translateColor();
+        component.send(person);
     }
 
     @Override
@@ -52,7 +60,7 @@ public class HangmanQuestionProvider implements QuestionProvider<HangmanQuestion
         placeholderComponent.replace("question", question);
         placeholderComponent.replace("person", person);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
         return false;
     }
 

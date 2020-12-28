@@ -46,7 +46,7 @@ public class ScrambleQuestionProvider implements QuestionProvider<ScrambleQuesti
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().scramble.questionSummoned);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -54,7 +54,15 @@ public class ScrambleQuestionProvider implements QuestionProvider<ScrambleQuesti
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().scramble.questionFinished);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
+    }
+
+    @Override
+    public void onRequestAnswer(Person person, ScrambleQuestion question) {
+        PlaceholderComponent component = new PlaceholderComponent(GameLanguage.getInstance().scramble.answer);
+        component.replace("question", question);
+        component.translateColor();
+        component.send(person);
     }
 
     @Override
@@ -63,7 +71,7 @@ public class ScrambleQuestionProvider implements QuestionProvider<ScrambleQuesti
         placeholderComponent.replace("question", question);
         placeholderComponent.replace("person", person);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
         return false;
     }
 

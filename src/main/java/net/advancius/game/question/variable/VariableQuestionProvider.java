@@ -69,7 +69,7 @@ public class VariableQuestionProvider implements QuestionProvider<VariableQuesti
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().variable.questionSummoned);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -77,7 +77,15 @@ public class VariableQuestionProvider implements QuestionProvider<VariableQuesti
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().variable.questionFinished);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
+    }
+
+    @Override
+    public void onRequestAnswer(Person person, VariableQuestion question) {
+        PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().variable.answer);
+        placeholderComponent.replace("question", question);
+        placeholderComponent.translateColor();
+        placeholderComponent.send(person);
     }
 
     @Override
@@ -86,7 +94,7 @@ public class VariableQuestionProvider implements QuestionProvider<VariableQuesti
         placeholderComponent.replace("question", question);
         placeholderComponent.replace("person", person);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
         return false;
     }
 

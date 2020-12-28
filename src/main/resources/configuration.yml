@@ -1,10 +1,5 @@
 bungeeRewardCommand: ""
 spigotRewardCommand: "rpadd 800 {person.bungeecord.proxiedPlayer.getName}"
-commandDescription:
-  name: chatgames
-  permission: advancius.chatgames
-  description: ""
-  aliases: ["acg", "cg"]
 minimumPlayers: 1
 maximumPlayers: 16
 firstSummonDelay: 30

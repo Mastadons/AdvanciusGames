@@ -7,7 +7,7 @@ import net.advancius.game.GameConfiguration;
 import net.advancius.game.GameLanguage;
 import net.advancius.game.question.QuestionProvider;
 import net.advancius.person.Person;
-import net.advancius.person.context.BungeecordContext;
+import net.advancius.person.context.ConnectionContext;
 import net.advancius.placeholder.PlaceholderComponent;
 
 @Data
@@ -42,7 +42,7 @@ public class NumberQuestionProvider implements QuestionProvider<NumberQuestion> 
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().number.questionSummoned);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -50,7 +50,15 @@ public class NumberQuestionProvider implements QuestionProvider<NumberQuestion> 
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().number.questionFinished);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
+    }
+
+    @Override
+    public void onRequestAnswer(Person person, NumberQuestion question) {
+        PlaceholderComponent component = new PlaceholderComponent(GameLanguage.getInstance().number.answer);
+        component.replace("question", question);
+        component.translateColor();
+        component.send(person);
     }
 
     @Override
@@ -59,7 +67,7 @@ public class NumberQuestionProvider implements QuestionProvider<NumberQuestion> 
         placeholderComponent.replace("question", question);
         placeholderComponent.replace("person", person);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
         return false;
     }
 
@@ -67,8 +75,8 @@ public class NumberQuestionProvider implements QuestionProvider<NumberQuestion> 
     public boolean onQuestionWrongAnswer(Person person, NumberQuestion question, String answer) {
         try {
             int numberAnswer = Integer.parseInt(answer);
-            if (question.getNumber() < numberAnswer) BungeecordContext.sendMessage(person, "&cGuess a lower number!");
-            if (question.getNumber() > numberAnswer) BungeecordContext.sendMessage(person, "&cGuess a higher number!");
+            if (question.getNumber() < numberAnswer) ConnectionContext.sendMessage(person, "&cGuess a lower number!");
+            if (question.getNumber() > numberAnswer) ConnectionContext.sendMessage(person, "&cGuess a higher number!");
             return true;
         } catch (NumberFormatException exception) { return false; }
     }

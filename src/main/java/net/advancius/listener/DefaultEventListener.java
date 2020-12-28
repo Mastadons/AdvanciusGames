@@ -48,12 +48,10 @@ public class DefaultEventListener implements EventListener {
             summonedQuestion.setAnswered(true);
             summonedQuestion.getQuestionProvider().onQuestionRightAnswer(event.getSender(), summonedQuestion.getQuestion());
             gameManager.sendRewards(event.getSender());
-            gameManager.setQuestion(null);
             gameManager.setDuration(0);
             event.setCancelled(true);
         }
         else if (summonedQuestion.getQuestionProvider().onQuestionWrongAnswer(event.getSender(), summonedQuestion.getQuestion(), event.getMessage())) {
-            ChatgameContext.incrementScore(event.getSender(), summonedQuestion.getQuestionProvider(), false);
             event.setCancelled(true);
         }
     }

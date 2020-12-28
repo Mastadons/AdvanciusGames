@@ -42,4 +42,22 @@ public class GameLanguage {
 
     public String info;
     public String reload;
+
+    public String noActiveGame;
+    public String activeGame;
+
+    public String noLongerIgnoring;
+    public String ignoring;
+
+    public String paused;
+    public String resumed;
+
+    public String scoreHeader;
+    public String scoreFooter;
+    public String scoreLine;
+
+    public String cooldown;
+    public String duration;
+
+    public String stopped;
 }

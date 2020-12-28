@@ -1,0 +1,45 @@
+commands:
+  - name: chatgames
+    permission: advancius.chatgames
+    description: ""
+    aliases: ["acg", "cg"]
+  - name: chatgames.answer
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: ["chatgames.cheat"]
+  - name: chatgames.help
+    permission: advancius.chatgames.help
+    description: ""
+    aliases: []
+  - name: chatgames.ignore
+    permission: advancius.chatgames.ignore
+    description: ""
+    aliases: ["chatgames.unignore"]
+  - name: chatgames.pause
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: ["chatgames.resume"]
+  - name: chatgames.reload
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: ["chatgames.rl"]
+  - name: chatgames.score
+    permission: advancius.chatgames.score
+    description: ""
+    aliases: []
+  - name: chatgames.cooldown
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: []
+  - name: chatgames.duration
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: []
+  - name: chatgames.stop
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: ["chatgames.end"]
+  - name: chatgames.summon
+    permission: advancius.chatgames.admin
+    description: ""
+    aliases: ["chatgames.start", "chatgames.create"]

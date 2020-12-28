@@ -6,4 +6,5 @@ public class QuestionLanguage {
     public String questionFinished;
 
     public String questionRightAnswer;
+    public String answer;
 }

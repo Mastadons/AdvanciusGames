@@ -58,6 +58,4 @@ public class GameConfiguration {
     public QuicktypeConfiguration quicktype;
     public ScrambleConfiguration scramble;
     public VariableConfiguration variable;
-
-    public CommandDescription commandDescription;
 }

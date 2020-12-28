@@ -9,6 +9,7 @@ import net.advancius.communication.CommunicationPacket;
 import net.advancius.communication.client.Client;
 import net.advancius.flag.DefinedFlag;
 import net.advancius.flag.FlagManager;
+import net.advancius.game.context.ChatgameContext;
 import net.advancius.game.question.QuestionProvider;
 import net.advancius.game.question.SummonedQuestion;
 import net.advancius.game.question.country.CountryQuestionProvider;
@@ -19,7 +20,7 @@ import net.advancius.game.question.scramble.ScrambleQuestionProvider;
 import net.advancius.game.question.variable.VariableQuestionProvider;
 import net.advancius.game.statistic.GameScore;
 import net.advancius.person.Person;
-import net.advancius.person.context.BungeecordContext;
+import net.advancius.person.context.ConnectionContext;
 import net.advancius.placeholder.PlaceholderComponent;
 import net.advancius.protocol.Protocol;
 import net.advancius.statistic.Statistic;
@@ -88,8 +89,9 @@ public class GameManager {
             cooldown = -1;
         }
         if (duration != -1 && duration-- <= 0) {
-            if (question != null) question.getQuestionProvider().onQuestionFinished(question.getQuestion());
+            if (!question.isAnswered()) question.getQuestionProvider().onQuestionFinished(question.getQuestion());
 
+            question = null;
             cooldown = GameConfiguration.getInstance().cooldown;
             duration = -1;
         }
@@ -123,8 +125,8 @@ public class GameManager {
         CommunicationPacket communicationPacket = CommunicationPacket.generatePacket(Protocol.SERVER_CROSS_COMMAND);
         communicationPacket.getMetadata().setMetadata("command", spigotRewardCommand);
 
-        BungeecordContext bungeecordContext = person.getContextManager().getContext(BungeecordContext.class);
-        Client client = AdvanciusBungee.getInstance().getCommunicationManager().getClient(bungeecordContext.getServer());
+        ConnectionContext connection = person.getContextManager().getContext(ConnectionContext.class);
+        Client client = AdvanciusBungee.getInstance().getCommunicationManager().getClientFromServer(connection.getServer());
         client.sendPacket(communicationPacket);
     }
 
@@ -135,6 +137,7 @@ public class GameManager {
     }
 
     public void broadcastMessage(TextComponent textComponent) {
-        AdvanciusBungee.getInstance().getPersonManager().broadcastMessage(textComponent);
+        AdvanciusBungee.getInstance().getPersonManager().getOnlinePersons(person -> !ChatgameContext.getContext(person).isIgnoring())
+                .forEach(person -> ConnectionContext.sendMessage(person, textComponent));
     }
 }

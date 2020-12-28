@@ -44,7 +44,7 @@ public class QuicktypeQuestionProvider implements QuestionProvider<QuicktypeQues
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().quicktype.questionSummoned);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
     }
 
     @Override
@@ -52,7 +52,15 @@ public class QuicktypeQuestionProvider implements QuestionProvider<QuicktypeQues
         PlaceholderComponent placeholderComponent = new PlaceholderComponent(GameLanguage.getInstance().quicktype.questionFinished);
         placeholderComponent.replace("question", question);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
+    }
+
+    @Override
+    public void onRequestAnswer(Person person, QuicktypeQuestion question) {
+        PlaceholderComponent component = new PlaceholderComponent(GameLanguage.getInstance().quicktype.answer);
+        component.replace("question", question);
+        component.translateColor();
+        component.send(person);
     }
 
     @Override
@@ -61,7 +69,7 @@ public class QuicktypeQuestionProvider implements QuestionProvider<QuicktypeQues
         placeholderComponent.replace("question", question);
         placeholderComponent.replace("person", person);
         placeholderComponent.translateColor();
-        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponentUnsafe());
+        AdvanciusGames.getInstance().getGameManager().broadcastMessage(placeholderComponent.toTextComponent());
         return false;
     }
 

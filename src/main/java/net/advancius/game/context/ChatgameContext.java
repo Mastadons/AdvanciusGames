@@ -2,16 +2,13 @@ package net.advancius.game.context;
 
 import com.google.gson.JsonObject;
 import lombok.Data;
-import net.advancius.AdvanciusBungee;
 import net.advancius.game.GameManager;
-import net.advancius.game.question.Question;
 import net.advancius.game.question.QuestionProvider;
 import net.advancius.game.statistic.GameScore;
 import net.advancius.person.Person;
+import net.advancius.person.context.MetadataContext;
 import net.advancius.person.context.PersonContext;
-import net.advancius.statistic.StatisticManager;
 import net.advancius.statistic.StatisticScore;
-import net.advancius.utils.Metadata;
 
 @Data
 public class ChatgameContext extends PersonContext {
@@ -57,6 +54,14 @@ public class ChatgameContext extends PersonContext {
     public GameScore incorrectScore() {
         StatisticScore score = GameManager.WRONG_ANSWER_STATISTIC.getScoreOrDefault(person.getId(), new GameScore());
         return score.getScore(GameScore.class);
+    }
+
+    public boolean isIgnoring() {
+        return MetadataContext.getPersistentMetadata(person).hasMetadata("ignoring-games", true);
+    }
+
+    public void toggleIgnoring() {
+        MetadataContext.getPersistentMetadata(person).setMetadata("ignoring-games", !isIgnoring());
     }
 
     @Override

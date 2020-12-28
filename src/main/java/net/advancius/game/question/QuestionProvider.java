@@ -10,6 +10,8 @@ public interface QuestionProvider<T extends Question> {
     void onQuestionSummoned(T question);
     void onQuestionFinished(T question);
 
+    void onRequestAnswer(Person person, T question);
+
     boolean onQuestionRightAnswer(Person person, T question);
     boolean onQuestionWrongAnswer(Person person, T question, String answer);
 

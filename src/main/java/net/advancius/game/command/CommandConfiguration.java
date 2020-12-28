@@ -37,8 +37,10 @@ public class CommandConfiguration {
 
         instance = configurationYaml.loadAs(configurationReader, CommandConfiguration.class);
 
-        for (CommandDescription commandDescription : CommandConfiguration.getInstance().getCommands())
+        for (CommandDescription commandDescription : CommandConfiguration.getInstance().getCommands()) {
+            if (commandDescription == null) continue;
             AdvanciusBungee.getInstance().getCommandManager().addDescription(commandDescription);
+        }
 
         AdvanciusLogger.info("Loaded game command configuration!");
     }
